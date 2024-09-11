@@ -20,7 +20,9 @@ public class StringCalculatorTest{
     @DisplayName("Testing Multiple Digit String")
     public void test_givenMultipleNumberString_whenAdded_thenReturnsNumber() {
         Assertions.assertEquals(3, stringCalculator.add("1,2"));
-        Assertions.assertEquals(2,stringCalculator.add("1000,2"));
+        Assertions.assertEquals(1002,stringCalculator.add("1000,2"));
+        Assertions.assertEquals(2,stringCalculator.add("1001,2"));
+
     }
 
     @Test

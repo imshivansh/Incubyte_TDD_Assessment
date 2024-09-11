@@ -45,7 +45,7 @@ public class StringCalculator {
         // Return the sum of all numbers, ignoring numbers >= 1000
         return Arrays.stream(numberStrings)
                 .mapToInt(Integer::parseInt)
-                .filter(i -> i < 1000) // Ignore numbers >= 1000
+                .filter(i -> i <= 1000) // Ignore numbers >= 1000
                 .sum();
     }
 
