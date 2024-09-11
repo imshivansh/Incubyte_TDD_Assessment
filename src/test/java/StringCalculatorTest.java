@@ -17,4 +17,9 @@ public class StringCalculatorTest{
         Assertions.assertEquals(1, stringCalculator.add("1"));
     }
 
+    @Test
+    public void test_givenMultipleNumberString_whenAdded_thenReturnsNumber() {
+        Assertions.assertEquals(1, stringCalculator.add("1,2"));
+    }
+
 }
