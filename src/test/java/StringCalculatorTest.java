@@ -35,6 +35,7 @@ public class StringCalculatorTest{
         Assertions.assertEquals(3, stringCalculator.add("//;\n1;2"));
         Assertions.assertEquals(6, stringCalculator.add("//|\n1|2|3"));
         Assertions.assertEquals(8, stringCalculator.add("//***\n1***2***3\n2"));
+        Assertions.assertEquals(6,stringCalculator.add("//[***]\n1***2***3"));
 
     }
 
