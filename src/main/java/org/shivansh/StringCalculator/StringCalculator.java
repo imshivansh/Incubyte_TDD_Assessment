@@ -11,31 +11,21 @@ public class StringCalculator {
             return 0;
         }
 
-        String delimiter = ",|\n"; // Default delimiters: comma or newline
+        String delimiters = ",|\n"; // Default delimiters: comma or newline
 
-        // Handle custom delimiter
+        // Handle custom delimiters
         if (numbers.startsWith("//")) {
-            // Extract delimiter section
-            int delimiterStart = numbers.indexOf("//") + 2;
+            // Extract delimiter part and remove it from the numbers string
             int delimiterEnd = numbers.indexOf('\n');
-            String delimiterSection = numbers.substring(delimiterStart, delimiterEnd);
-
-            // Check if the delimiter is enclosed in square brackets
-            if (delimiterSection.startsWith("[") && delimiterSection.endsWith("]")) {
-                // Extract delimiter without square brackets
-                delimiter = delimiterSection.substring(1, delimiterSection.length() - 1);
-            } else {
-                // Single-character delimiter
-                delimiter = delimiterSection;
-            }
-
-            // Remove the delimiter line and update numbers string
+            String delimiterSection = numbers.substring(2, delimiterEnd);
             numbers = numbers.substring(delimiterEnd + 1);
+
+            // Extract multiple delimiters enclosed in square brackets
+            delimiters = extractDelimiters(delimiterSection);
         }
 
-        // Handle cases where multiple delimiters are used
-        String delimiterPattern = Pattern.quote(delimiter); // Escape special regex characters
-        numbers = numbers.replaceAll(delimiterPattern, ",");
+        // Replace all occurrences of custom delimiters with commas
+        numbers = replaceDelimitersWithComma(numbers, delimiters);
 
         // Split numbers by commas or newlines
         String[] numberStrings = numbers.split(",|\n");
@@ -47,7 +37,7 @@ public class StringCalculator {
                 .mapToObj(String::valueOf)
                 .collect(Collectors.joining(","));
 
-        // If there are negative numbers, throw an exception with all negative numbers
+        // Throw exception if negative numbers are found
         if (!negativeNumbers.isEmpty()) {
             throw new IllegalArgumentException("Negative numbers not allowed: " + negativeNumbers);
         }
@@ -57,5 +47,24 @@ public class StringCalculator {
                 .mapToInt(Integer::parseInt)
                 .filter(i -> i < 1000) // Ignore numbers >= 1000
                 .sum();
+    }
+
+    // Extract delimiters from the delimiter section
+    private String extractDelimiters(String delimiterSection) {
+        // Remove enclosing square brackets
+        if (delimiterSection.startsWith("[") && delimiterSection.endsWith("]")) {
+            // Remove outer square brackets and split by "]["
+            return Arrays.stream(delimiterSection.substring(1, delimiterSection.length() - 1).split("\\]\\["))
+                    .map(Pattern::quote) // Escape special regex characters
+                    .collect(Collectors.joining("|"));
+        } else {
+            // Single-character delimiter
+            return Pattern.quote(delimiterSection);
+        }
+    }
+
+    // Replace all delimiters in the numbers string with commas
+    private String replaceDelimitersWithComma(String numbers, String delimiters) {
+        return numbers.replaceAll(delimiters, ",");
     }
 }
