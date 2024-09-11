@@ -1,9 +1,8 @@
 import org.junit.jupiter.api.*;
 import org.shivansh.StringCalculator.StringCalculator;
 
-@DisplayName("Testing String Calculator for Incubyte_TDD_Assessment")
 public class StringCalculatorTest{
-  private final StringCalculator stringCalculator = new StringCalculator();
+    private final StringCalculator stringCalculator = new StringCalculator();
 
     @Test
     @DisplayName("Testing Empty String")
@@ -21,6 +20,7 @@ public class StringCalculatorTest{
     @DisplayName("Testing Multiple Digit String")
     public void test_givenMultipleNumberString_whenAdded_thenReturnsNumber() {
         Assertions.assertEquals(3, stringCalculator.add("1,2"));
+        Assertions.assertEquals(2,stringCalculator.add("1000,2"));
     }
 
     @Test
@@ -46,8 +46,6 @@ public class StringCalculatorTest{
         });
         Assertions.assertEquals("Negative numbers not allowed: -2,-4", exception.getMessage());
     }
-
-
 
 
 }

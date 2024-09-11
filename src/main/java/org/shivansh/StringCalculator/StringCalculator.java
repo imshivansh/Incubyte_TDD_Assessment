@@ -17,7 +17,7 @@ public class StringCalculator {
             numbers = numbers.replace(delimiter, ",");
         }
 
-      //separating String by comma and new line
+        //separating String by comma and new line
         String[] numberStrings = numbers.split(",|\n");
 
         // Collect negative numbers
