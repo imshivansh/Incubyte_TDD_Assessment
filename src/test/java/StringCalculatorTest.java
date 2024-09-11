@@ -22,4 +22,10 @@ public class StringCalculatorTest{
         Assertions.assertEquals(3, stringCalculator.add("1,2"));
     }
 
+    @Test
+    public void test_givenNewLinesBetweenNumbers_whenAdd_thenReturnsSum() {
+        Assertions.assertEquals(6, stringCalculator.add("1\n2,3"));
+    }
+
+
 }
