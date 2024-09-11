@@ -13,6 +13,12 @@ public class StringCalculator {
          * The regular expression ",|\n" matches either a comma or a new line.
          * This handles cases where numbers are separated by commas or new lines.
          */
+        if (numbers.startsWith("//")) {
+            String delimiter = numbers.substring(2, numbers.indexOf('\n'));
+            numbers = numbers.substring(numbers.indexOf('\n') + 1);
+            numbers = numbers.replace(delimiter, ",");
+        }
+
         String[] numberStrings = numbers.split(",|\n");
 
         /*
