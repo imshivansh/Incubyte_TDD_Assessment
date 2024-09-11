@@ -19,7 +19,7 @@ public class StringCalculatorTest{
 
     @Test
     public void test_givenMultipleNumberString_whenAdded_thenReturnsNumber() {
-        Assertions.assertEquals(1, stringCalculator.add("1,2"));
+        Assertions.assertEquals(3, stringCalculator.add("1,2"));
     }
 
 }
