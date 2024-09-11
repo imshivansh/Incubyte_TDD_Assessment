@@ -35,6 +35,7 @@ public class StringCalculator {
         // Return the sum of all numbers
         return Arrays.stream(numberStrings)
                 .mapToInt(Integer::parseInt)
+                .filter(i->i<1000)
                 .sum();
     }
 }
