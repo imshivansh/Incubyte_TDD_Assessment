@@ -8,7 +8,13 @@ public class StringCalculatorTest{
   private final StringCalculator stringCalculator = new StringCalculator();
 
     @Test
-    public void testEmptyStringReturnsZero(){
-        Assertions.assertEquals(0,stringCalculator.add(""));
+    public void test_givenEmptyString_whenAdded_thenReturnsZero() {
+        Assertions.assertEquals(0, stringCalculator.add(""));
     }
+
+    @Test
+    public void test_givenSingleNumberString_whenAdded_thenReturnsNumber() {
+        Assertions.assertEquals(1, stringCalculator.add("1"));
+    }
+
 }
