@@ -21,6 +21,7 @@ public class StringCalculatorTest{
     public void test_givenMultipleNumberString_whenAdded_thenReturnsNumber() {
         Assertions.assertEquals(3, stringCalculator.add("1,2"));
         Assertions.assertEquals(1002,stringCalculator.add("1000,2"));
+        //testing Numbers bigger than 1000 should be ignored
         Assertions.assertEquals(2,stringCalculator.add("1001,2"));
 
     }
@@ -37,7 +38,10 @@ public class StringCalculatorTest{
         Assertions.assertEquals(3, stringCalculator.add("//;\n1;2"));
         Assertions.assertEquals(6, stringCalculator.add("//|\n1|2|3"));
         Assertions.assertEquals(8, stringCalculator.add("//***\n1***2***3\n2"));
+
+        //testing Delimiters of any length with the following format: “//[delimiter]\n
         Assertions.assertEquals(6,stringCalculator.add("//[***]\n1***2***3"));
+        //testing multiple delimiter
         Assertions.assertEquals(6,stringCalculator.add("//[*][%]\n1*2%3"));
 
     }
