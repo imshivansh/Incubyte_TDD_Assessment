@@ -23,17 +23,26 @@ public class StringCalculatorTest{
     }
 
     @Test
-    public void test_givenNewLinesBetweenNumbers_whenAdd_thenReturnsSum() {
+    public void test_givenNewLinesBetweenNumbers_whenAdded_thenReturnsSum() {
         Assertions.assertEquals(6, stringCalculator.add("1\n2,3"));
     }
 
     @Test
-    public void test_givenCustomDelimiter_whenAdd_thenReturnsSum() {
+    public void test_givenCustomDelimiter_whenAdded_thenReturnsSum() {
         Assertions.assertEquals(3, stringCalculator.add("//;\n1;2"));
         Assertions.assertEquals(6, stringCalculator.add("//|\n1|2|3"));
         Assertions.assertEquals(8, stringCalculator.add("//***\n1***2***3\n2"));
 
     }
+
+    @Test
+    public void test_givenNegativeNumbers_whenAdded_thenThrowsExceptionWithAllNegatives() {
+        Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            stringCalculator.add("1,-2,3,-4");
+        });
+        Assertions.assertEquals("Negative numbers not allowed: -2,-4", exception.getMessage());
+    }
+
 
 
 
