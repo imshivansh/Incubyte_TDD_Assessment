@@ -27,5 +27,11 @@ public class StringCalculatorTest{
         Assertions.assertEquals(6, stringCalculator.add("1\n2,3"));
     }
 
+    @Test
+    public void test_givenCustomDelimiter_whenAdd_thenReturnsSum() {
+        Assertions.assertEquals(3, stringCalculator.add("//;\n1;2"));
+    }
+
+
 
 }
